@@ -9,6 +9,7 @@ builder.Configuration.AddJsonFile("appsetting.Development.json");
 builder.Services.AddDbContext<EscapeRoomContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -40,6 +41,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.MapControllerRoute(
+              name: "default",
+              pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
 app.Run();

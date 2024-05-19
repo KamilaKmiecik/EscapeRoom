@@ -1,11 +1,13 @@
 ﻿using EscapeRoom.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
 namespace EscapeRoom.Data;
 
-public class EscapeRoomContext : DbContext
+public class EscapeRoomContext : IdentityDbContext<IdentityUser>
 {
     public EscapeRoomContext(DbContextOptions<EscapeRoomContext> options) : base(options)
     {
@@ -21,6 +23,7 @@ public class EscapeRoomContext : DbContext
         modelBuilder.Entity<Room>().ToTable("Rooms");
         modelBuilder.Entity<User>().ToTable("Users");
 
+        base.OnModelCreating(modelBuilder);
     }
 }
 

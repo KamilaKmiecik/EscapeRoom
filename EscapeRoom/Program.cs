@@ -48,9 +48,23 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.MapControllerRoute(
-              name: "default",
-              pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//              name: "default",
+//              pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "ReservationByDate",
+        pattern: "Reservation/Day",
+        defaults: new { controller = "Reservation", action = "Day" });
+
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
+
 app.UseAuthentication();;
 
 using (var scope = app.Services.CreateScope())

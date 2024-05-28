@@ -17,9 +17,10 @@ namespace EscapeRoom.Data
 
             var rooms = new Room[]
             {
-                new Room { RoomName = "Room 1", IsOccupied = false },
-                new Room { RoomName = "Room 2", IsOccupied = false },
-                new Room { RoomName = "Room 3", IsOccupied = false }
+                new Room { RoomName="Kosmiczna Wyprawa", IsOccupied=false, Image="zdjecia/KosmicznaWyprawa.jpg", LongDescription="Przygotuj się na niezapomnianą przygodę w naszym najnowszym escape roomie \"Kosmiczna Wyprawa\", gdzie wcielisz się w rolę kosmicznego podróżnika z misją naprawy statku kosmicznego i powrotu na Ziemię przed upływem czasu. Zbieraj wskazówki, rozwiązuj międzygwiezdne zagadki i odkrywaj tajemnicze pomieszczenia, wykorzystując swoją sprytność i zręczność, aby pokonać wyzwania galaktycznej podróży i zapewnić bezpieczny powrót do domu. Czy zdołasz pokonać czas i uwolnić się z kosmicznej pułapki? Odkryj swoje umiejętności w naszym ekscytującym escape roomie już dziś!"},
+                new Room { RoomName="Labirynt Złudzeń", IsOccupied=false, Image="zdjecia/LabiryntZludzen.jpg", LongDescription="Intrygujący escape room, w którym gracze muszą pokonać szereg mylących zagadek i iluzji, aby odnaleźć wyjście z zawiłego labiryntu w wyznaczonym czasie."},
+                new Room { RoomName="Pokój Tajemnic", IsOccupied=false, Image="zdjecia/PokojTajemnic.jpg", LongDescription="Emocjonująca gra escape room, gdzie drużyna musi rozwiązać zagadki i odkryć ukryte wskazówki, aby wydostać się z tajemniczego pokoju prze upływem czasu."}
+
             };
             foreach (var room in rooms)
             {

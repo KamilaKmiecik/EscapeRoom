@@ -1,0 +1,7 @@
+﻿@{
+    ViewData["Title"] = "Reservation Details";
+    var reservationDate = ViewBag.ReservationDate as DateTime?;
+}
+
+<h2>Reservation Details for @reservationDate?.ToString("yyyy-MM-dd")</h2>
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style/footerHeaderstyle.css">
+  <link rel="stylesheet" href="style/homeStyle.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="zdjecia/ERlogo.png" alt="Logo" height="60">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+    </div>
+</nav>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-target="#myCarousel" data-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-target="#myCarousel" data-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-target="#myCarousel" data-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="bd-placeholder-img" width="100%" height="100%" src="zdjecia/carosell1.jpeg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>Znajdź drogę do wolności!</h1>
+              <p>Pokonuj kolejne wyzwania escape roomu, wzmacniając więzi między sobą i czerpiąc niezapomniane doznania z tej przygody.</p>
+              <p><a class="btn btn-lg btn-primary" href="kalendarzRezerwacji.html">Rezerwuj dzisiaj</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img class="bd-placeholder-img" width="100%" height="100%" src="zdjecia/carosell2.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Dołącz do nas</h1>
+              <p>Załóż konto i odkryj wyjątkowe oferty, łatwą rezerwację oraz dostęp do okazjonalnych promocji..</p>
+              <p><a class="btn btn-lg btn-primary" href="register.html">Stwórz konto</a></p> <!--zmienić odnośnik-->
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img class="bd-placeholder-img" width="100%" height="100%" src="zdjecia/cariosell3.webp" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>Przeżyj naszą najnowszą przygodę.</h1>
+              <p>Wciel się w rolę kosmicznego podróżnika i zmierz się z wyzwaniami, jakich świat nie widział. Czy zdołasz wrócić na Ziemię przed upływem czasu?</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Więcej informacji</a></p> <!--dodać odnośnik do strony detail z pokojem konsmiczna przygoda-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-target="#myCarousel" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-target="#myCarousel" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  
+    <!-- w api zamiast tego dodać funckje pobierania danych z listy 
+     powinno wyglądać coś w tym stylu
+     <div class="container marketing">
+    <div class="row">
+        @foreach (var room in Model)
+        {
+            <div class="col-lg-4">
+                <img src="@room.Image" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="@room.Name">
+                <h2>@room.Name</h2>
+                <p>@room.Description</p>
+                <p><a class="btn btn-secondary" href="/Room/Description/@room.Id">View details &raquo;</a></p>
+            </div>
+        }
+    </div>
+</div>
+
+    -->
+    <div class="container marketing">
+      <div class="row">
+        <div class="col-lg-4">
+          <img src="zdjecia/PokojTajemnic.jpg" alt="Pokój Tajemnic" class="bd-placeholder-img rounded-circle" width="140" height="140">
+          <h2>Pokój Tajemnic</h2>
+          <p>Emocjonująca gra escape room, gdzie drużyna musi rozwiązać zagadki i odkryć ukryte wskazówki, aby wydostać się z tajemniczego pokoju prze upływem czasu.</p>
+          <p><a class="btn btn-secondary" href="detalePokoju.html">Więcej Infromacji &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <img src="zdjecia/LabiryntZludzen.jpg" alt="Labirynt złudzeń" class="bd-placeholder-img rounded-circle" width="140" height="140">
+          <h2>Labirynt Złudzeń</h2>
+          <p>Intrygujący escape room, w którym gracze muszą pokonać szereg mylących zagadek i iluzji, aby odnaleźć wyjście z zawiłego labiryntu w wyznaczonym czasie.</p>
+          <p><a class="btn btn-secondary" href="detalePokoju.html">Więcej Infromacji &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <img src="zdjecia/KosmicznaWyprawa.jpg" alt="Pokój Tajemnic" class="bd-placeholder-img rounded-circle" width="140" height="140">
+          <h2>Kosmiczna Wyprawa</h2>
+          <p>Ekscytujący escape room, gdzie uczestnicy muszą rozwiązać międzygwiezdne zagadki i naprawić statek kosmiczny, aby bezpiecznie wrócić na Ziemię przed upływem czasu.</p>
+          <p><a class="btn btn-secondary" href="detalePokoju.html">Więcej Infromacji &raquo;</a></p>
+        </div>
+      </div>
+  
+     <!-- features-->
+      <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Zabierz przyjaciół do nowego wymiaru i odkryj niezwykłe emocje.</h2>
+            <p class="lead">Rozwiązywanie zagadek w escape roomie to nie tylko wspaniała rozrywka, ale również idealna okazja do zbliżenia się ze znajomymi i zacieśnienia więzi. Poznajcie się na nowo, pracując razem w pokonaniu wyzwań!</p>
+          </div>
+          <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="zdjecia/feature1.jpg" alt="Feature 1 Image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Przekrocz granice wyobraźni i zrób coś niesamowitego.</h2>
+            <p class="lead">Escape room to nie tylko gra - to możliwość wyjścia ze swojej strefy komfortu i wkroczenia w świat przygody. Doświadczaj niezwykłych momentów, które z pewnością na długo pozostaną w Waszej pamięci!</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="zdjecia/feature2.jpg" alt="Feature 1 Image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Przemierzaj kosmiczne strefy i odkryj swoje mocne strony.</span></h2>
+            <p class="lead">Escape room to nie tylko rozrywka, to również szansa na lepsze poznanie siebie i swoich przyjaciół. Pracujcie razem, wspierajcie się i pokonujcie wyzwania, aby wspólnie osiągnąć sukces!</p>
+          </div>
+          <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="zdjecia/feature3.jpg" alt="Feature 1 Image">
+          </div>
+        </div>
+
+      <hr class="featurette-divider">
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-Ksv3qNTv5VgEMG8G4HqGdK4lEztQmS1YFsEZ+8A4Qcd4K1BIwP6jP8E3M5zi7QuF" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

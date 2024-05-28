@@ -1,0 +1,90 @@
+.day-name {
+    border: 1px solid rgb(34, 1, 49);
+    padding: 10px;
+    height: 50px;
+    background-color: rgb(51, 1, 75);
+    color: white;
+    font-weight: bold;
+  }
+  .day-number {
+    border: 1px solid rgb(51, 1, 75);
+    padding: 10px;
+    height: 100px;
+    cursor: pointer;
+  }
+  .available {
+    background-color: rgb(177, 163, 252);
+  }
+  .lavender-btn {
+    background-color: rgb(51, 1, 75) !important;
+    border-color: rgb(51, 1, 75) !important;
+  }
+  .lavender-btn:hover {
+    background-color: rgb(191, 39, 238) !important;
+    border-color: rgb(191, 39, 238) !important;
+  }
+  .row {
+    display: flex; 
+    flex-wrap: wrap; 
+  }
+  .col {
+    flex: 1; 
+    min-width: 0; 
+  }
+  .room-selection {
+    margin-top: 20px;
+    flex-wrap: nowrap; 
+    align-items: center;
+    margin-left: 15px;
+  }
+  
+  .room-selection h2 {
+    color: rgb(34, 1, 49);
+    font-weight: bold;
+  }
+  
+  
+  .room-selection input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+@media screen and (max-width: 768px) {
+  .day-number {
+    height: 50px; 
+    overflow: hidden; 
+    white-space: nowrap; 
+  }
+  .row {
+    display: flex; 
+    flex-wrap: wrap; 
+  }
+  .col {
+    flex: 1; 
+    min-width: 0; 
+  }
+  .day-name {
+    font-size: 0px;
+    text-align: center; 
+  }
+
+  .day-name::after {
+    content: attr(data-short-name);
+    font-size: 12px; 
+    font-weight: bold;
+
+  }
+  .day-number small {
+    display: none; 
+  }
+  .room-selection {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 12px;
+  }
+
+  .room-selection label {
+    margin-bottom: 10px;
+  }
+  
+}

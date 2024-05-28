@@ -57,7 +57,8 @@
                     }
                     @if (result.Success)
                     {
-                       //await Html.RenderPartialAsync("_LoginPartial");
+                        <partial name="_LoginPartial" />
+                       @* await Html.RenderPartialAsync("_LoginPartial"); *@
                     }
                     else
                     {

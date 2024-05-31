@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2 class="text-center">Rezerwacje:</h2>
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nazwa</th>
+            <th>Początek rezerwacji</th>
+            <th>Koniec rezerwacji</th>
+            <th>Pokój</th>
+            <th>Klient</th>
+            <th>Liczba osób</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in ViewBag.Reservations)
+        {
+            <tr>
+                <td>@reservation.Name</td>
+                <td>@reservation.ReservationStart</td>
+                <td>@reservation.ReservationEnd</td>
+                <td>@reservation.Room.RoomName</td>
+                <td>@reservation.Client.UserName</td>
+                <td>@reservation.NumberOfPeople</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2 class="text-center">Pokoje:</h2>
+<ul class="list-group">
+    @foreach (var room in ViewBag.Rooms)
+    {
+        <li class="list-group-item">@room.RoomName</li>
+    }
+</ul>
+
+<h2 class="text-center">Użytkownicy:</h2>
+<ul class="list-group">
+    @foreach (var user in ViewBag.Users)
+    {
+        <li class="list-group-item">@user.UserName</li>
+    }
+</ul>

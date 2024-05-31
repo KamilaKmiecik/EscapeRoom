@@ -10,7 +10,7 @@ public class Reservation
     public Room Room { get; set;}
     public IEnumerable<User> Workers { get; set; }
 
-    public int ClientID { get; set; }
+    public string ClientID { get; set; }
     public User Client { get; set; }
     public int NumberOfPeople { get; set; }
 

@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Hosting
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Hosting
 @using Microsoft.AspNetCore.Mvc.ViewEngines
 @inject IWebHostEnvironment Environment
 @inject ICompositeViewEngine Engine
@@ -45,6 +46,9 @@
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" asp-area="" asp-controller="Rezerwacje" asp-action="Rezerwacje">Rezerwacje</a>
+                        </li> 
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="DashBoard">DashBoard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Kontakt">Kontakt</a>
@@ -52,20 +56,7 @@
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    @{
-                        var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: false);
-                    }
-                    @if (result.Success)
-                    {
                         <partial name="_LoginPartial" />
-                       @* await Html.RenderPartialAsync("_LoginPartial"); *@
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("The default Identity UI layout requires a partial view '_LoginPartial' " +
-                            "usually located at '/Pages/_LoginPartial' or at '/Views/Shared/_LoginPartial' to work. Based on your configuration " +
-                            $"we have looked at it in the following locations: {System.Environment.NewLine}{string.Join(System.Environment.NewLine, result.SearchedLocations)}.");
-                    }
                 </div>
             </div>
         </nav>

@@ -30,10 +30,10 @@ namespace EscapeRoom.Data
 
             var users = new User[]
             {
-                new User { FirstName = "John", LastName = "Doe", UserType = UserType.Admin },
-                new User { FirstName = "Jane", LastName = "Smith", UserType = UserType.RoomWorker },
-                new User { FirstName = "Alice", LastName = "Johnson", UserType = UserType.DeskWorker },
-                new User { FirstName = "Bob", LastName = "Williams", UserType = UserType.Client }
+                new User {  LastName = "Doe", UserType = UserType.Admin },
+                new User { LastName = "Smith", UserType = UserType.RoomWorker },
+                new User {  LastName = "Johnson", UserType = UserType.DeskWorker },
+                new User {  LastName = "Williams", UserType = UserType.Client }
             };
             foreach (var user in users)
             {
@@ -49,7 +49,7 @@ namespace EscapeRoom.Data
                     ReservationStart = DateTime.Now.AddDays(7),
                     ReservationEnd = DateTime.Now.AddDays(8),
                     RoomID = 1,
-                    ClientID = 4,
+                    ClientID = "4",
                     NumberOfPeople = 10
                 },
                 new Reservation
@@ -58,7 +58,7 @@ namespace EscapeRoom.Data
                     ReservationStart = DateTime.Now.AddDays(14),
                     ReservationEnd = DateTime.Now.AddDays(14).AddHours(3),
                     RoomID = 2,
-                    ClientID = 4,
+                    ClientID = "2",
                     NumberOfPeople = 8
                 }
             };

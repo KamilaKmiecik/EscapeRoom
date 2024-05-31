@@ -1,10 +1,11 @@
-﻿namespace EscapeRoom.Models;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class User
+namespace EscapeRoom.Models;
+
+public class User : IdentityUser
 {
-    public int ID { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+   // public string FirstName { get; set; }
+    public string? LastName { get; set; }
     public UserType UserType { get; set; }
 }
 

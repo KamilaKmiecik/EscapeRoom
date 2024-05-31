@@ -11,9 +11,11 @@ builder.Configuration.AddJsonFile("appsetting.Development.json");
 builder.Services.AddDbContext<EscapeRoomContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<EscapeRoomContext>();
+
+builder.Services.AddRazorPages();
 
 builder.Services.AddControllersWithViews();
 
@@ -48,24 +50,27 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//app.MapControllerRoute(
-//              name: "default",
-//              pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
+app.MapControllerRoute(
+              name: "default",
+              pattern: "{controller=Home}/{action=Index}/{id?}");
+
+/*app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "ReservationByDate",
         pattern: "Reservation/Day",
         defaults: new { controller = "Reservation", action = "Day" });
 
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+
+
+});*/
 
 
 app.UseAuthentication();;
+
+app.MapRazorPages();
 
 using (var scope = app.Services.CreateScope())
 {
@@ -77,13 +82,13 @@ using (var scope = app.Services.CreateScope())
         if (!await roleManager.RoleExistsAsync(role))
             await roleManager.CreateAsync(new IdentityRole(role));
 
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
     string email = "admin@mail.com";
     string password = "Test@1234";
 
     if (await userManager.FindByEmailAsync(email) == null)
     {
-        var user = new IdentityUser() { UserName = email, Email = email, EmailConfirmed = true };
+        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
 
         await userManager.CreateAsync(user, password);
         await userManager.AddToRoleAsync(user, "Admin");
@@ -94,7 +99,7 @@ using (var scope = app.Services.CreateScope())
 
     if (await userManager.FindByEmailAsync(email) == null)
     {
-        var user = new IdentityUser() { UserName = email, Email = email, EmailConfirmed = true };
+        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
 
         await userManager.CreateAsync(user, password);
         await userManager.AddToRoleAsync(user, "RoomWorker");
@@ -105,7 +110,7 @@ using (var scope = app.Services.CreateScope())
 
     if (await userManager.FindByEmailAsync(email) == null)
     {
-        var user = new IdentityUser() { UserName = email, Email = email, EmailConfirmed = true };
+        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
 
         await userManager.CreateAsync(user, password);
         await userManager.AddToRoleAsync(user, "DeskWorker");
@@ -116,7 +121,7 @@ using (var scope = app.Services.CreateScope())
 
     if (await userManager.FindByEmailAsync(email) == null)
     {
-        var user = new IdentityUser() { UserName = email, Email = email, EmailConfirmed = true };
+        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
 
         await userManager.CreateAsync(user, password);
         await userManager.AddToRoleAsync(user, "Client");

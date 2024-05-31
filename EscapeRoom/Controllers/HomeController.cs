@@ -30,5 +30,16 @@ namespace EscapeRoom.Controllers
 
         }
 
+        public IActionResult SortedReservations([FromServices] EscapeRoomContext context)
+        {
+            ViewData["Title"] = "SortedReservations";
+
+            ViewBag.Reservations = context.Reservations.ToList();
+            ViewBag.Rooms = context.Rooms.ToList();
+            return View();
+
+        }
+
+        
     }
 }

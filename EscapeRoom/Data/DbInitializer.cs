@@ -10,7 +10,7 @@ namespace EscapeRoom.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.Reservations.Any())
+            if (context.Reservations.Any() || context.Rooms.Any() || context.Users.Any())
             {
                 return;
             }

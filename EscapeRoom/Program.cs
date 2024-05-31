@@ -71,7 +71,7 @@ app.MapControllerRoute(
 app.UseAuthentication();;
 
 app.MapRazorPages();
-/*
+
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -127,7 +127,7 @@ using (var scope = app.Services.CreateScope())
         await userManager.AddToRoleAsync(user, "Client");
     }
 
-}*/
+}
 
 app.Run();
 

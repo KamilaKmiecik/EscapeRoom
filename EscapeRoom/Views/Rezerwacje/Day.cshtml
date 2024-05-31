@@ -1,7 +1,10 @@
-﻿@{
+﻿@using EscapeRoom.Models; 
+@{
     ViewData["Title"] = "Reservation Details";
     var reservationDate = ViewBag.ReservationDate as DateTime?;
+    var room = ViewBag.Room as Room; 
 }
 
 <h2>Reservation Details for @reservationDate?.ToString("yyyy-MM-dd")</h2>
+<h2>Room name @room.RoomName</h2>
 

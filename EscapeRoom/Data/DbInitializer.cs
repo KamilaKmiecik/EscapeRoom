@@ -49,7 +49,8 @@ namespace EscapeRoom.Data
                     ReservationStart = DateTime.Now.AddDays(7),
                     ReservationEnd = DateTime.Now.AddDays(8),
                     RoomID = 1,
-                    ClientID = "4",
+                    Client = users.FirstOrDefault(),
+                    ClientID = users.FirstOrDefault().Id,
                     NumberOfPeople = 10
                 },
                 new Reservation
@@ -58,7 +59,8 @@ namespace EscapeRoom.Data
                     ReservationStart = DateTime.Now.AddDays(14),
                     ReservationEnd = DateTime.Now.AddDays(14).AddHours(3),
                     RoomID = 2,
-                    ClientID = "2",
+                    Client = users.LastOrDefault(), 
+                    ClientID = users.LastOrDefault().Id,
                     NumberOfPeople = 8
                 }
             };

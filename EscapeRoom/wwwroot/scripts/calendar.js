@@ -1,13 +1,21 @@
-// Test data - remove after connecting to the database
-var availability = {
-    "2024-05-01": [{ name: "Pokój Tajemnic", status: "available" }],
-    "2024-05-04": [{ name: "Pokój Tajemnic", status: "reserved" }, { name: "Labirynt Złudzeń", status: "available" }],
-    "2024-05-05": [{ name: "Labirynt Złudzeń", status: "available" }],
-    "2024-06-06": [{ name: "Pokój Tajemnic", status: "available" }, { name: "Labirynt Złudzeń", status: "available" }, { name: "Kosmiczna Wyprawa", status: "available" }],
-    "2024-05-07": [{ name: "Pokój Tajemnic", status: "available" }, { name: "Labirynt Złudzeń", status: "reserved" }],
-    "2024-05-10": [{ name: "Labirynt Złudzeń", status: "available" }, { name: "Kosmiczna Wyprawa", status: "available" }],
-    "2024-06-11": [{ name: "Pokój Tajemnic", status: "available" }, { name: "Kosmiczna Wyprawa", status: "available" }],
-};
+var availability = {};
+
+async function fetchAvailability() {
+    try {
+        const response = await fetch('/api/Reservations/availability');
+        if (response.ok) {
+            availability = await response.json();
+            // Default selection of all rooms
+            var selectedRooms = Object.keys(availability).map(date => availability[date].map(room => room.name)).flat();
+            // Generating the calendar
+            generateCalendar(currentMonth, currentYear, selectedRooms);
+        } else {
+            console.error('Failed to fetch availability:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching availability:', error);
+    }
+}
 
 var currentDate = new Date();
 var currentMonth = currentDate.getMonth();
@@ -94,9 +102,9 @@ function generateCalendar(month, year, selectedRooms) {
 }
 
 // Default selection of all rooms
-var selectedRooms = Object.keys(availability).map(date => availability[date].map(room => room.name)).flat();
-// Generating the calendar
-generateCalendar(currentMonth, currentYear, selectedRooms);
+var selectedRooms = [];
+// Fetching availability and generating the calendar
+fetchAvailability();
 
 // Function to handle room selection change
 function handleRoomSelectionChange() {
@@ -138,13 +146,4 @@ document.getElementById('nextMonth').addEventListener('click', function () {
     localStorage.setItem('lastVisitedYear', currentYear);
 });
 
-// Generate calendar and remember last state
-window.onload = function () {
-    var lastVisitedMonth = localStorage.getItem('lastVisitedMonth');
-    var lastVisitedYear = localStorage.getItem('lastVisitedYear');
-    if (lastVisitedMonth !== null && lastVisitedYear !== null) {
-        currentMonth = parseInt(lastVisitedMonth);
-        currentYear = parseInt(lastVisitedYear);
-    }
-    generateCalendar(currentMonth, currentYear, selectedRooms);
-};
+

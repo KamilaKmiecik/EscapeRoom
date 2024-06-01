@@ -2,6 +2,7 @@ using EscapeRoom.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using EscapeRoom.Models;
+using YourNamespace.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,9 +20,15 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<ReservationService>();
+
+builder.Services.AddHostedService<ScheduleService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+
 
 
 if (!app.Environment.IsDevelopment())

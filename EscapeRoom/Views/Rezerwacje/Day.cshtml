@@ -1,10 +1,38 @@
-﻿@using EscapeRoom.Models; 
-@{
-    ViewData["Title"] = "Reservation Details";
+﻿@{
     var reservationDate = ViewBag.ReservationDate as DateTime?;
-    var room = ViewBag.Room as Room; 
+    var roomAvailability = ViewBag.RoomAvailability as List<dynamic>;
+
+    if (reservationDate == null || roomAvailability == null)
+    {
+        <h2>Invalid date or no data available</h2>
+    }
+    else
+    {
+        ViewData["Title"] = "Availability for " + reservationDate.Value.ToString("yyyy-MM-dd");
+    }
 }
 
-<h2>Reservation Details for @reservationDate?.ToString("yyyy-MM-dd")</h2>
-<h2>Room name @room.RoomName</h2>
+@if (reservationDate != null && roomAvailability != null)
+{
+    <h2>@ViewData["Title"]</h2>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Room Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in roomAvailability)
+            {
+                <tr>
+                    <td>@item.Room.Name</td>
+                    <td>@item.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a href="/Rezerwacje">Back to Calendar</a>

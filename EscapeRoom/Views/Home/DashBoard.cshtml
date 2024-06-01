@@ -15,17 +15,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var reservation in ViewBag.Reservations)
-        {
-            <tr>
-                <td>@reservation.Name</td>
-                <td>@reservation.ReservationStart</td>
-                <td>@reservation.ReservationEnd</td>
-                <td>@reservation.Room.RoomName</td>
-                <td>@reservation.Client.UserName</td>
-                <td>@reservation.NumberOfPeople</td>
-            </tr>
-        }
+            @foreach (var reservation in ViewBag.Reservations)
+            {
+                if (reservation.Client != null)
+                {
+                <tr>
+                    <td>@reservation.Name</td>
+                    <td>@reservation.ReservationStart</td>
+                    <td>@reservation.ReservationEnd</td>
+                    <td>@reservation.Room.RoomName</td>
+                    <td>@reservation.Client.UserName</td>
+                    <td>@reservation.NumberOfPeople</td>
+                </tr>
+                }
+            }
     </tbody>
 </table>
 

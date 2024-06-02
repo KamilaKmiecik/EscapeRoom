@@ -25,8 +25,7 @@ namespace YourNamespace.Services
 
         private DateTime GetNextRunTime()
         {
-            DateTime nextMonday = DateTime.Today.AddDays(((int)DayOfWeek.Saturday - (int)DateTime.Today.DayOfWeek + 7) % 7); //TO TEST: Set this to current day
-            DateTime nextRunTime = nextMonday.AddHours(19).AddMinutes(44); //TO TEST: Set this to a minute more than your clock right now
+            DateTime nextRunTime = DateTime.Today.AddDays(((int)DayOfWeek.Sunday - (int)DateTime.Today.DayOfWeek + 7) % 7).AddHours(20).AddMinutes(40); // Next Monday at 10 AM
             if (nextRunTime < DateTime.Now)
             {
                 nextRunTime = nextRunTime.AddDays(7);
@@ -39,7 +38,7 @@ namespace YourNamespace.Services
             using (var scope = _serviceProvider.CreateScope())
             {
                 var reservationService = scope.ServiceProvider.GetRequiredService<ReservationService>();
-                reservationService.CreateWeeklyReservations();
+                reservationService.CreateSlotsForSixWeeks();
             }
             _timer.Change(GetNextRunTime() - DateTime.Now, Timeout.InfiniteTimeSpan);
         }

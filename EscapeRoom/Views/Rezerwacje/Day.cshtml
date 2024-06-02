@@ -1,38 +1,22 @@
-﻿@{
-    var reservationDate = ViewBag.ReservationDate as DateTime?;
-    var roomAvailability = ViewBag.RoomAvailability as List<dynamic>;
+﻿@model DateTime
 
-    if (reservationDate == null || roomAvailability == null)
-    {
-        <h2>Invalid date or no data available</h2>
-    }
-    else
-    {
-        ViewData["Title"] = "Availability for " + reservationDate.Value.ToString("yyyy-MM-dd");
-    }
+@{
+    ViewData["Title"] = "Available Slots for " + ViewBag.ReservationDate.ToString("yyyy-MM-dd");
 }
 
-@if (reservationDate != null && roomAvailability != null)
+<h2>Available Slots for @ViewBag.ReservationDate.ToString("yyyy-MM-dd")</h2>
+
+@foreach (var reservation in ViewBag.AvailableSlots)
 {
-    <h2>@ViewData["Title"]</h2>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Room Name</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in roomAvailability)
-            {
-                <tr>
-                    <td>@item.Room.Name</td>
-                    <td>@item.Status</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <li>
+        @reservation.Room.RoomName: @reservation.ReservationStart.ToString("yyyy-MM-dd HH:mm") - @reservation.ReservationEnd.ToString("HH:mm")
+        <input type="number" id="numberOfPeople_@reservation.ID" placeholder="Number of people" />
+        <button onclick="reserveSlot('@reservation.ID')">Rezerwuj</button>
+    </li>
 }
 
-<a href="/Rezerwacje">Back to Calendar</a>
+
+@section Scripts {
+    <script src="~/scripts/reservation.js"></script>
+}
+

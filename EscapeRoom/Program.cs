@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using EscapeRoom.Models;
 using YourNamespace.Services;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,19 +61,12 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-              name: "default",
-              pattern: "{controller=Home}/{action=Index}/{id?}");
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-/*app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "ReservationByDate",
-        pattern: "Reservation/Day",
-        defaults: new { controller = "Reservation", action = "Day" });
-
-
-
-});*/
+app.MapControllerRoute(
+    name: "api",
+    pattern: "api/{controller}/{action}/{slotId?}");
 
 
 app.UseAuthentication();;

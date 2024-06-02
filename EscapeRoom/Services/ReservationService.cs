@@ -14,33 +14,41 @@ namespace YourNamespace.Services
             _context = context;
         }
 
-        public void CreateWeeklyReservations()
+        public void CreateSlotsForSixWeeks()
         {
             var rooms = _context.Rooms.ToList();
             var currentDate = DateTime.Now.Date;
 
-            foreach (var room in rooms)
+            for (int i = 0; i < 6 * 7; i++) // 6 weeks
             {
-                for (int i = 0; i < 7; i++) // For each day of the week
+                var day = currentDate.AddDays(i);
+
+                foreach (var room in rooms)
                 {
-                    var day = currentDate.AddDays(i);
+                    // Check if there are existing slots for the day
+                    var existingSlots = _context.Reservations
+                        .Where(r => r.RoomID == room.ID && r.ReservationStart.Date == day)
+                        .ToList();
 
-                    for (int slot = 0; slot < 3; slot++) // 3 slots per day
+                    if (existingSlots.Count == 0)
                     {
-                        var reservationStart = day.AddHours(10 + slot * 3); // Example: Slots at 10 AM, 1 PM, and 4 PM
-                        var reservationEnd = reservationStart.AddHours(2); // Example: Each slot is 2 hours long
-
-                        var reservation = new Reservation
+                        for (int slot = 0; slot < 3; slot++) // 3 slots per day
                         {
-                            Name = $"Slot {slot + 1}",
-                            ReservationStart = reservationStart,
-                            ReservationEnd = reservationEnd,
-                            RoomID = room.ID,
-                            NumberOfPeople = 0,
-                            ClientID = null
-                        };
+                            var reservationStart = day.AddHours(10 + slot * 3); // Slots at 10 AM, 1 PM, and 4 PM
+                            var reservationEnd = reservationStart.AddHours(2); // Each slot is 2 hours long
 
-                        _context.Reservations.Add(reservation);
+                            var reservation = new Reservation
+                            {
+                                Name = $"Slot {slot + 1}",
+                                ReservationStart = reservationStart,
+                                ReservationEnd = reservationEnd,
+                                RoomID = room.ID,
+                                NumberOfPeople = 0,
+                                ClientID = null
+                            };
+
+                            _context.Reservations.Add(reservation);
+                        }
                     }
                 }
             }

@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="appsetting.Development.json" />
     <Content Remove="Views\Home\DetalePokoi.cshtml" />
     <Content Remove="wwwroot\css\bootstrap-grid.css" />
     <Content Remove="wwwroot\css\bootstrap-grid.css.map" />
@@ -76,7 +75,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="appsetting.Development.json" />
     <None Include="Views\Pokoje\DetalePokoi.cshtml" />
     <None Include="wwwroot\css\bootstrap-grid.css" />
     <None Include="wwwroot\css\bootstrap-grid.css.map" />

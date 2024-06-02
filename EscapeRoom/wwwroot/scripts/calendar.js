@@ -5,6 +5,7 @@ async function fetchAvailability() {
         const response = await fetch('/api/Reservations/availability');
         if (response.ok) {
             availability = await response.json();
+            console.log("Availability data fetched successfully:", availability); // Log availability data
             // Default selection of all rooms
             var selectedRooms = Object.keys(availability).map(date => availability[date].map(room => room.name)).flat();
             // Generating the calendar
@@ -99,51 +100,49 @@ function generateCalendar(month, year, selectedRooms) {
         }
         calendarRow.appendChild(weekRow);
     }
-}
 
-// Default selection of all rooms
-var selectedRooms = [];
-// Fetching availability and generating the calendar
-fetchAvailability();
+    // Adding event listeners for room selection changes
+    var roomCheckboxes = document.querySelectorAll('input[name="selectedRooms"]');
+    roomCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', handleRoomSelectionChange);
+    });
+}
 
 // Function to handle room selection change
 function handleRoomSelectionChange() {
     var selectedRoomCheckboxes = document.querySelectorAll('input[name="selectedRooms"]:checked');
-    selectedRooms = [];
+    var selectedRooms = [];
     selectedRoomCheckboxes.forEach(function (checkbox) {
         selectedRooms.push(checkbox.value);
     });
     generateCalendar(currentMonth, currentYear, selectedRooms);
 }
 
-// Adding event listeners for room selection changes
-var roomCheckboxes = document.querySelectorAll('input[name="selectedRooms"]');
-roomCheckboxes.forEach(function (checkbox) {
-    checkbox.addEventListener('change', handleRoomSelectionChange);
-});
-
 // Previous month
-document.getElementById('prevMonth').addEventListener('click', function () {
+document.getElementById('prevMonth').addEventListener('click', async function () {
     currentMonth--;
     if (currentMonth < 0) {
         currentMonth = 11;
         currentYear--;
     }
+    await fetchAvailability();
     generateCalendar(currentMonth, currentYear, selectedRooms);
     localStorage.setItem('lastVisitedMonth', currentMonth);
     localStorage.setItem('lastVisitedYear', currentYear);
 });
 
 // Next month
-document.getElementById('nextMonth').addEventListener('click', function () {
+document.getElementById('nextMonth').addEventListener('click', async function () {
     currentMonth++;
     if (currentMonth > 11) {
         currentMonth = 0;
         currentYear++;
     }
+    await fetchAvailability();
     generateCalendar(currentMonth, currentYear, selectedRooms);
     localStorage.setItem('lastVisitedMonth', currentMonth);
     localStorage.setItem('lastVisitedYear', currentYear);
 });
 
-
+// Fetching availability and generating the calendar
+fetchAvailability();

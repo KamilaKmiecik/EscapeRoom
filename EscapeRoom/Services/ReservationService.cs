@@ -25,7 +25,7 @@ namespace YourNamespace.Services
 
                 foreach (var room in rooms)
                 {
-                    // Check if there are existing slots for the day
+                    // Check for existing slots
                     var existingSlots = _context.Reservations
                         .Where(r => r.RoomID == room.ID && r.ReservationStart.Date == day)
                         .ToList();

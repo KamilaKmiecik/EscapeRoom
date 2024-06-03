@@ -25,7 +25,7 @@ namespace YourNamespace.Services
 
         private DateTime GetNextRunTime()
         {
-            DateTime nextRunTime = DateTime.Today.AddDays(((int)DayOfWeek.Sunday - (int)DateTime.Today.DayOfWeek + 7) % 7).AddHours(20).AddMinutes(40); // Next Monday at 10 AM
+            DateTime nextRunTime = DateTime.Today.AddDays(((int)DayOfWeek.Sunday - (int)DateTime.Today.DayOfWeek + 7) % 7).AddHours(20).AddMinutes(40); //  Monday 10 AM
             if (nextRunTime < DateTime.Now)
             {
                 nextRunTime = nextRunTime.AddDays(7);

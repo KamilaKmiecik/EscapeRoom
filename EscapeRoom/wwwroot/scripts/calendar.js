@@ -5,10 +5,8 @@ async function fetchAvailability() {
         const response = await fetch('/api/Reservations/availability');
         if (response.ok) {
             availability = await response.json();
-            console.log("Availability data fetched successfully:", availability); // Log availability data
-            // Default selection of all rooms
+            console.log("Availability data fetched successfully:", availability); 
             var selectedRooms = Object.keys(availability).map(date => availability[date].map(room => room.name)).flat();
-            // Generating the calendar
             generateCalendar(currentMonth, currentYear, selectedRooms);
         } else {
             console.error('Failed to fetch availability:', response.statusText);

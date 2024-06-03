@@ -85,6 +85,7 @@ namespace EscapeRoom.Controllers
         [HttpPost("api/Reservations/ReserveSlot")]
         public async Task<IActionResult> ReserveSlot([FromBody] ReservationRequest request)
         {
+            //this.User.Identity.
             try
             {
                 var reservation = await _context.Reservations.FindAsync(request.SlotID);

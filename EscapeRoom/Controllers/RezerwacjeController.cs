@@ -49,6 +49,7 @@ namespace EscapeRoom.Controllers
 
             ViewBag.ReservationDate = reservationDate;
             ViewBag.AvailableSlots = reservations;
+            ViewBag.Rooms = _context.Rooms;
 
             return View();
         }

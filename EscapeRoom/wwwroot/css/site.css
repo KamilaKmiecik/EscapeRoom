@@ -143,3 +143,38 @@ body {
     border-top: none;
     border-bottom: 2px solid #1F2544;
 }
+
+
+.btn-color {
+    color: #fff;
+    background-color: #7743DB !important;
+    border-color: #7743DB !important;
+}
+
+    .btn-color:hover {
+        background-color: #1F2544 !important;
+        border-color: #1F2544 !important;
+        color:#fff;
+    }
+
+
+.profile-image-pic {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+
+
+.cardbody-color {
+    border: solid 2px #7743DB;
+    border-radius: 15px;
+    background-color: #FFFBF5;
+}
+.fw-bold {
+    font-weight: bold; 
+}
+
+a {
+    text-decoration: none;
+}

@@ -1,18 +1,28 @@
 /*header*/
-.navbar{
+.navbar {
     background-color: FFFBF5 !important;
+    
+}
+.navbar-nav {
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+.navbar-collapse {
+    flex-basis: auto;
 }
 
 .navbar-nav .nav-link {
-    font-size: 18px; 
-    transition: color 0.3s; 
+    font-size: 18px;
+    transition: color 0.3s;
     font-weight: bold;
     color: #1F2544 !important;
-  }
+    white-space: nowrap;
+}
 
   .navbar-nav .nav-link:hover {
     color: #7743DB !important;
   }
+
 
 /*stopka */
 .stopka{

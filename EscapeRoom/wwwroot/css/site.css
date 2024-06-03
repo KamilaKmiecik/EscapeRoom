@@ -16,11 +16,25 @@ a {
     box-shadow: 0 0 0 0.2rem #0077cc;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.btn {
+    background-color: #474F7A;
+    border-color: #474F7A;
 }
+
+    .btn:hover {
+        background-color: #1F2544;
+        border-color: #1F2544;
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #474F7A !important;
+    border-color: #474F7A !important;
+}
+    .btn-primary:hover {
+        background-color: #1F2544;
+        border-color: #1F2544;
+    }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
@@ -55,7 +69,7 @@ html {
 }
 
 .pricing-header {
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .border-top {

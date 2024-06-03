@@ -113,3 +113,33 @@ body {
   white-space: nowrap;
   line-height: 60px;
 }
+
+
+/*dashboard */
+
+.table {
+    color: #1F2544;
+    border: 2px solid #1F2544;
+    border-image: initial;
+}
+    .table td {
+        vertical-align: bottom;
+        border: 2px solid #1F2544;
+        text-align: center;
+        vertical-align: middle;
+    }
+    .table th {
+        background-color: rgb(51, 1, 75);
+        color: white;
+        font-weight: bold;
+        border: 2px solid rgb(38, 1, 56);
+        text-align: center;
+        vertical-align: middle;
+    }
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 2px solid #1F2544;
+}

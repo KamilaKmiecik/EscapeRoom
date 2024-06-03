@@ -10,12 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - EscapeRoom</title>
 
-    <link rel="stylesheet" href="~/css/site.css">
+    
     <link rel="stylesheet" href="~/style/footerHeaderstyle.css">
     <link rel="stylesheet" href="~/style/homeStyle.css">
     <link rel="stylesheet" href="~/style/calendarStyle.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
 
     
 </head>
@@ -35,15 +36,16 @@
                             <li class="nav-item active">
                                 <a class="nav-link" asp-area="" asp-controller="Rezerwacje" asp-action="Rezerwacje">Rezerwacje</a>
                             </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="DashBoard">DashBoard</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="SortedReservations">Reservations by room</a>
-                            </li>
+                            
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Kontakt">Kontakt</a>
                             </li>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("DeskWorker") || User.IsInRole("RoomWorker"))
+                            {
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="SortedReservations">Złożone Rezerwacje</a>
+                                </li>
+                            }
                         </ul>
                         <div class="d-flex align-items-center">
                             <partial name="_LoginPartial" />
@@ -56,6 +58,27 @@
                 </button>
             </div>
         </nav>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="DashBoard">DashBoard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Reservations" asp-action="Index">Edytuj Rezerwacje</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Rooms" asp-action="Index">Edytuj Pokoje</a>
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            }
+        
     </header>
 
 

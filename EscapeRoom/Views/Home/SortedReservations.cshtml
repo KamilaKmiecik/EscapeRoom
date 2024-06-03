@@ -11,10 +11,11 @@
 
 @foreach (var room in rooms)
 {
-    <h2 class="text-center">Pokój @room.RoomName Rezerwacje:</h2>
+    <div class=" container">
+    <h2 class="text-left">Pokój @room.RoomName Rezerwacje:</h2>
     <table class="table table-striped table-bordered">
 
-        <thead class="thead-dark">
+        <thead class="thead">
             <tr>
                 <th>Nazwa</th>
                 <th>Początek rezerwacji</th>
@@ -36,5 +37,7 @@
             }
         </tbody>
     </table>
+    </div>
+    <hr class="divider">
 }
 

@@ -49,7 +49,7 @@ namespace EscapeRoom.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
-            ViewData["ClientID"] = new SelectList(_context.Users, "ID", "ID");
+            ViewData["ClientID"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID");
             return View();
         }
@@ -67,7 +67,7 @@ namespace EscapeRoom.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientID"] = new SelectList(_context.Users, "ID", "ID", reservation.ClientID);
+            ViewData["ClientID"] = new SelectList(_context.Users, "Id", "Id", reservation.ClientID);
             ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", reservation.RoomID);
             return View(reservation);
         }
@@ -85,7 +85,7 @@ namespace EscapeRoom.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientID"] = new SelectList(_context.Users, "ID", "ID", reservation.ClientID);
+            ViewData["ClientID"] = new SelectList(_context.Users, "Id", "Id", reservation.ClientID);
             ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", reservation.RoomID);
             return View(reservation);
         }
@@ -122,7 +122,7 @@ namespace EscapeRoom.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientID"] = new SelectList(_context.Users, "ID", "ID", reservation.ClientID);
+            ViewData["ClientID"] = new SelectList(_context.Users, "Id", "Id", reservation.ClientID);
             ViewData["RoomID"] = new SelectList(_context.Rooms, "ID", "ID", reservation.RoomID);
             return View(reservation);
         }

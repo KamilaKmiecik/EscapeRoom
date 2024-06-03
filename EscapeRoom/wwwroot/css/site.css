@@ -3,7 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 a.navbar-brand {
   white-space: normal;
-  text-align: center;
+  text-align: left;
   word-break: break-all;
 }
 
@@ -11,29 +11,35 @@ a {
   color: #0077cc;
 }
 
+.navbar-toggler {
+    background-color: transparent;
+    border-color: #7743DB !important;
+    color: #7743DB !important;
+}
+
 .form-control:focus {
     border-color: #0077cc;
     box-shadow: 0 0 0 0.2rem #0077cc;
 }
 
-.btn {
-    background-color: #474F7A;
-    border-color: #474F7A;
+.btn-secondary {
+    background-color: #474F7A !important;
+    border-color: #474F7A !important;
 }
 
-    .btn:hover {
-        background-color: #1F2544;
-        border-color: #1F2544;
+    .btn-secondary:hover {
+        background-color: #1F2544 !important;
+        border-color: #1F2544 !important;
     }
 
 .btn-primary {
     color: #fff;
-    background-color: #474F7A !important;
-    border-color: #474F7A !important;
+    background-color: #7743DB !important;
+    border-color: #7743DB !important;
 }
     .btn-primary:hover {
-        background-color: #1F2544;
-        border-color: #1F2544;
+        background-color: #1F2544 !important;
+        border-color: #1F2544 !important;
     }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {

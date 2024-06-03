@@ -1,15 +1,18 @@
 /*header*/
 .navbar {
-    background-color: FFFBF5 !important;
+    background-color: #FFFBF5 !important;
     
+}
 }
 .navbar-nav {
     flex-wrap: nowrap;
     flex-direction: row;
+
 }
 .navbar-collapse {
     flex-basis: auto;
 }
+
 
 .navbar-nav .nav-link {
     font-size: 18px;
@@ -17,6 +20,7 @@
     font-weight: bold;
     color: #1F2544 !important;
     white-space: nowrap;
+    text-align:left;
 }
 
   .navbar-nav .nav-link:hover {
@@ -25,13 +29,12 @@
 
 
 /*stopka */
-.stopka{
+.stopka {
     background-color: #ffffff;
-    color:#121214;
-    margin:0;
-    padding:0;
+    color: #1F2544 !important;
+    margin: 0;
+    padding: 0;
     margin-top: 173px;
-
 }
 
 .Stopkatytyl{
@@ -49,8 +52,8 @@ line-height: 29px;
 }
 
 
-.stopka hr{
-    border: 2px solid #121214;
+.stopka hr {
+    border: 2px solid #1F2544 !important;
 }
 
 .colstopka{

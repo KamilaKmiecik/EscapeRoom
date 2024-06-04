@@ -106,7 +106,7 @@ namespace EscapeRoom.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 if (user == null)
                 {
-                    return Unauthorized("User not logged in");
+                    return Unauthorized("Proszę zaloguj się przed stworzeniem rezerwacji!");
                 }
 
                 reservation.ClientID = user.Id;
@@ -115,11 +115,11 @@ namespace EscapeRoom.Controllers
                 _context.Update(reservation);
                 await _context.SaveChangesAsync();
 
-                return Ok("Slot reserved successfully");
+                return Ok("Rezerwacja przebiegła pomyślnie");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred while reserving slot: {ex.Message}");
+                return StatusCode(500, $"Błąd rezerwacji: {ex.Message}{Environment.NewLine}Skontaktuj się z nami!");
             }
         }
     }

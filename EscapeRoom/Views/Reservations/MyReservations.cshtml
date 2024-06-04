@@ -1,54 +1,51 @@
-﻿@model IEnumerable<EscapeRoom.Models.Reservation>
+﻿@using EscapeRoom.Models;
+@model IEnumerable<EscapeRoom.Models.Reservation>
 
 @{
     ViewData["Title"] = "Moje reserwacje";
+    var rooms = ViewBag.Rooms as IEnumerable<Room>;
 }
 
 <h1>Moje rezerwacje</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservationStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservationEnd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfPeople)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReservationStart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReservationEnd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.ID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumberOfPeople)
-                </td>
-                <td>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@if (!Model.Any())
+{
+    <div class="d-flex justify-content-center align-items-center">
+        <br/>
+        <h3>Nie masz żadnych rezerwacji ☹️ </h3>
+     </div>       
+}
+else
+{
+    @foreach (var reservation in Model)
+    {
+        <div class="card mb-4 w-100">
+            <div class="row no-gutters">
+                <div class="col-md-4 d-none d-md-block d-md-flex align-items-center justify-content-center">
+                    <img src="~/@rooms.FirstOrDefault(x => x.ID == reservation.RoomID).Image" class="width-90 rounded-3 mt-2" alt="pokój" height="280px" width="280px">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body mt-3">
+                        <h5 class="card-title">@rooms.FirstOrDefault(x => x.ID == reservation.RoomID).RoomName</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                Start rezerwacji: @Html.DisplayFor(modelItem => reservation.ReservationStart)
+                            </li>
+                            <li class="mb-2">
+                                Koniec rezerwacji: @Html.DisplayFor(modelItem => reservation.ReservationEnd)
+                            </li>
+                            <li class="mb-2">
+                                Pokój: @Html.DisplayFor(modelItem => reservation.Room.ID)
+                            </li>
+                            <li class="mb-2">
+                                Liczba osób: @Html.DisplayFor(modelItem => reservation.NumberOfPeople)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

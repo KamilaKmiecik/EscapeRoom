@@ -33,7 +33,10 @@ namespace EscapeRoom.Controllers
             var user = await _userManager.GetUserAsync(User);
 
             var reservationsList  = await escapeRoomContext.ToListAsync();
-            var reservations = reservationsList.ToList<Reservation>().Where(x => x.ClientID == user.Id); 
+            var reservations = reservationsList.ToList<Reservation>().Where(x => x.ClientID == user.Id);
+           
+            ViewBag.Rooms = _context.Rooms.ToList();
+
             return View(reservations);
         }
 

@@ -11,20 +11,33 @@
 
 @foreach (var room in rooms)
 {
-    <h2 class="text-center">Pokój @room.RoomName Rezerwacje:</h2>
-    <table class="table table-striped table-bordered">
-        <tbody>
-            @foreach (var reservation in reservations.Where(x => x.RoomID == room.ID && x.ClientID == null))
-            {
-                <li>
-                    @reservation.ReservationStart.ToString("yyyy-MM-dd HH:mm") - @reservation.ReservationEnd.ToString("HH:mm")
-                    <input type="number" id="numberOfPeople_@reservation.ID" placeholder="Number of people" />
-                    <button onclick="reserveSlot('@reservation.ID')">Rezerwuj</button>
-                </li>
-            }
-        </tbody>
-    </table>
+    <div class="card mb-4 w-100">
+        <div class="row no-gutters">
+            <div class="col-md-4 d-none d-md-block d-md-flex align-items-center justify-content-center">
+                <img src="https://www.bootdey.com/image/280x280/FF00FF/000000" class="width-90 rounded-3" alt="">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@room.RoomName</h5>
+                    <ul class="list-unstyled">
+                        @foreach (var reservation in reservations.Where(x => x.RoomID == room.ID && x.ClientID == null))
+                        {
+                            <li class="mb-2">
+                                @reservation.ReservationStart.ToString("yyyy-MM-dd HH:mm") - @reservation.ReservationEnd.ToString("HH:mm")
+                                <div class="d-flex align-items-center">
+                                    <input type="number" id="numberOfPeople_@reservation.ID" class="form-control mr-2" placeholder="Liczba osób" style="max-width: 150px;" />
+                                    <button class="btn btn-primary" onclick="reserveSlot('@reservation.ID')">Rezerwuj</button>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 }
+
+
 
 
 

@@ -67,7 +67,7 @@ function generateCalendar(month, year, selectedRooms) {
                     window.location.href = `/Rezerwacje/Day?date=${this.getAttribute('data-date')}`;
                 });
             } else if (availableRooms.length > 0) {
-                dayTile.innerHTML = `<span>${i}</span><br><small>Dostępne ${availableRooms.length} atrakcje</small>`;
+                dayTile.innerHTML = `<span>${i}</span><br><small>Dostępne ${availableRooms.length} Terminy/ów</small>`;
                 dayTile.classList.add('available');
                 dayTile.setAttribute('data-date', dateKey);
                 dayTile.addEventListener('click', function () {

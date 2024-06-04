@@ -7,16 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EscapeRoom.Data;
 using EscapeRoom.Models;
+using System.Collections.Generic;
+using System.Linq; 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EscapeRoom.Controllers
 {
     public class ReservationsController : Controller
     {
         private readonly EscapeRoomContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public ReservationsController(EscapeRoomContext context)
+        public ReservationsController(EscapeRoomContext context, UserManager<User> userManager)
         {
+            _userManager = userManager;
             _context = context;
+        }
+
+        [Authorize]
+        public async Task<IActionResult> MyReservations()
+        {
+            var escapeRoomContext = _context.Reservations.Include(r => r.Client).Include(r => r.Room);
+
+            var user = await _userManager.GetUserAsync(User);
+
+            var reservationsList  = await escapeRoomContext.ToListAsync();
+            var reservations = reservationsList.ToList<Reservation>().Where(x => x.ClientID == user.Id); 
+            return View(reservations);
         }
 
         // GET: Reservations

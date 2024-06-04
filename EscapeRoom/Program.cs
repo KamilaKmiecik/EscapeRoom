@@ -66,11 +66,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//app.MapControllerRoute(
-//    name: "api",
-//    pattern: "api/{controller}/{action}/{slotId?}");
-
-
 
 app.MapRazorPages();
 

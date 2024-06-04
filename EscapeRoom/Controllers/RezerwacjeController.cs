@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EscapeRoom.Data;
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 
 namespace EscapeRoom.Controllers
 {
     public class RezerwacjeController : Controller
     {
         private readonly EscapeRoomContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public RezerwacjeController(EscapeRoomContext context)
+        public RezerwacjeController(EscapeRoomContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [Route("Rezerwacje")]
@@ -96,6 +99,18 @@ namespace EscapeRoom.Controllers
                 }
 
                 reservation.NumberOfPeople = request.NumberOfPeople;
+
+                _context.Update(reservation);
+                await _context.SaveChangesAsync();
+
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return Unauthorized("User not logged in");
+                }
+
+                reservation.ClientID = user.Id;
+                reservation.Client = user;
 
                 _context.Update(reservation);
                 await _context.SaveChangesAsync();

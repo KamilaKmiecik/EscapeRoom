@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EscapeRoom.Data;
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 
 namespace EscapeRoom.Controllers
 {
     public class RezerwacjeController : Controller
     {
         private readonly EscapeRoomContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public RezerwacjeController(EscapeRoomContext context)
+        public RezerwacjeController(EscapeRoomContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [Route("Rezerwacje")]
@@ -100,11 +103,23 @@ namespace EscapeRoom.Controllers
                 _context.Update(reservation);
                 await _context.SaveChangesAsync();
 
-                return Ok("Slot reserved successfully");
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return Unauthorized("Proszę zaloguj się przed stworzeniem rezerwacji!");
+                }
+
+                reservation.ClientID = user.Id;
+                reservation.Client = user;
+
+                _context.Update(reservation);
+                await _context.SaveChangesAsync();
+
+                return Ok("Rezerwacja przebiegła pomyślnie");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"An error occurred while reserving slot: {ex.Message}");
+                return StatusCode(500, $"Błąd rezerwacji: {ex.Message}{Environment.NewLine}Skontaktuj się z nami!");
             }
         }
     }

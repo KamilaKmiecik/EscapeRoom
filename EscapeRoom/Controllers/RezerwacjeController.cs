@@ -92,6 +92,9 @@ namespace EscapeRoom.Controllers
             //this.User.Identity.
             try
             {
+                if (request == null ||  request.NumberOfPeople == null || request.NumberOfPeople <= 0)
+                    return NotFound("Wybierz ilość osób do rezerwacji!");
+
                 var reservation = await _context.Reservations.FindAsync(request.SlotID);
                 if (reservation == null)
                 {

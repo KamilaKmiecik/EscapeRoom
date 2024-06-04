@@ -11,11 +11,12 @@
             numberOfPeople: numberOfPeople
         })
     })
-        .then(response => {
-            if (response.ok) {
-                alert('Slot reserved successfully.');
+        .then(response => response.json().then(data => ({ status: response.status, body: data })))
+        .then(result => {
+            if (result.status === 200) {
+                alert(result.body);
             } else {
-                alert('Failed to reserve slot. Please try again.');
+                alert(result.body);
             }
         })
         .catch(error => {

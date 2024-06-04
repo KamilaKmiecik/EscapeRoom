@@ -85,51 +85,37 @@ using (var scope = app.Services.CreateScope())
             await roleManager.CreateAsync(new IdentityRole(role));
 
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-    string email = "admin@mail.com";
-    string password = "Test@1234";
-
-    if (await userManager.FindByEmailAsync(email) == null)
+    foreach (var role in roles)
     {
-        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
-
-        await userManager.CreateAsync(user, password);
-        await userManager.AddToRoleAsync(user, "Admin");
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
     }
 
-    email = "RoomWorker@mail.com";
-    password = "Test@1234";
-
-    if (await userManager.FindByEmailAsync(email) == null)
+    var users = new[]
     {
-        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
+        new { Email = "admin@mail.com", Password = "Test@1234", Role = "Admin" },
+        new { Email = "RoomWorker@mail.com", Password = "Test@1234", Role = "RoomWorker" },
+        new { Email = "DeskWorker@mail.com", Password = "Test@1234", Role = "DeskWorker" },
+        new { Email = "Client@mail.com", Password = "Test@1234", Role = "Client" }
+    };
 
-        await userManager.CreateAsync(user, password);
-        await userManager.AddToRoleAsync(user, "RoomWorker");
-    }
-
-    email = "DeskWorker@mail.com";
-    password = "Test@1234";
-
-    if (await userManager.FindByEmailAsync(email) == null)
+    foreach (var user in users)
     {
-        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
+        if (await userManager.FindByEmailAsync(user.Email) == null)
+        {
+            var newUser = new User { UserName = user.Email, Email = user.Email, EmailConfirmed = true };
+            var createResult = await userManager.CreateAsync(newUser, user.Password);
 
-        await userManager.CreateAsync(user, password);
-        await userManager.AddToRoleAsync(user, "DeskWorker");
+            if (createResult.Succeeded)
+            {
+                await userManager.AddToRoleAsync(newUser, user.Role);
+            }
+        }
     }
-
-    email = "Client@mail.com";
-    password = "Test@1234";
-
-    if (await userManager.FindByEmailAsync(email) == null)
-    {
-        var user = new User() { UserName = email, Email = email, EmailConfirmed = true };
-
-        await userManager.CreateAsync(user, password);
-        await userManager.AddToRoleAsync(user, "Client");
-    }
-
 }
+
 
 app.Run();
 

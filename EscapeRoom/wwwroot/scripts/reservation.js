@@ -11,13 +11,9 @@
             numberOfPeople: numberOfPeople
         })
     })
-        .then(response => response.json().then(data => ({ status: response.status, body: data })))
-        .then(result => {
-            if (result.status === 200) {
-                alert(result.body);
-            } else {
-                alert(result.body);
-            }
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
         })
         .catch(error => {
             console.error('Error reserving slot:', error);

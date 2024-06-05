@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using EscapeRoom.Data;
 using System.Globalization;
 using Microsoft.AspNetCore.Identity;
+using NuGet.Protocol;
+using System.Net;
 
 namespace EscapeRoom.Controllers
 {
@@ -89,16 +91,15 @@ namespace EscapeRoom.Controllers
         [HttpPost("api/Reservations/ReserveSlot")]
         public async Task<IActionResult> ReserveSlot([FromBody] ReservationRequest request)
         {
-            //this.User.Identity.
             try
             {
-                if (request == null ||  request.NumberOfPeople == null || request.NumberOfPeople <= 0)
-                    return NotFound("Wybierz ilość osób do rezerwacji!");
+                if (request == null || request.NumberOfPeople == null || request.NumberOfPeople <= 0)
+                    return new JsonResult(new { message = "Wybierz ilość osób do rezerwacji!" }) { StatusCode = 404 };
 
                 var reservation = await _context.Reservations.FindAsync(request.SlotID);
                 if (reservation == null)
                 {
-                    return NotFound("Slot not found");
+                    return new JsonResult(new { message = "Slot not found" }) { StatusCode = 404 };
                 }
 
                 reservation.NumberOfPeople = request.NumberOfPeople;
@@ -109,7 +110,7 @@ namespace EscapeRoom.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 if (user == null)
                 {
-                    return Unauthorized("Proszę zaloguj się przed stworzeniem rezerwacji!");
+                    return new JsonResult(new { message = "Proszę zaloguj się przed stworzeniem rezerwacji!" }) { StatusCode = 401 };
                 }
 
                 reservation.ClientID = user.Id;
@@ -118,11 +119,11 @@ namespace EscapeRoom.Controllers
                 _context.Update(reservation);
                 await _context.SaveChangesAsync();
 
-                return Ok("Rezerwacja przebiegła pomyślnie");
+                return new JsonResult(new { message = "Rezerwacja przebiegła pomyślnie" }) { StatusCode = 200 };
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Błąd rezerwacji: {ex.Message}{Environment.NewLine}Skontaktuj się z nami!");
+                return new JsonResult(new { message = $"Błąd rezerwacji: {ex.Message}{Environment.NewLine}Skontaktuj się z nami!" }) { StatusCode = 500 };
             }
         }
     }

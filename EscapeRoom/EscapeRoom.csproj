@@ -146,14 +146,19 @@
   <ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.30" />
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.30" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.18" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.16" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.18" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.18" />
 	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+	  <PackageReference Include="Moq" Version="4.20.70" />
+	  <PackageReference Include="xunit" Version="2.8.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="appsetting.Development.json" />
+    <Resource Include="appsetting.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
